@@ -34,6 +34,8 @@
     self.checkinLocation = newLocation;
     //do something else
     NSLog(@"didUpdateToLocation %f,%f",newLocation.coordinate.latitude,newLocation.coordinate.longitude);
+    self.longitudeLabel.text = [NSString stringWithFormat:@"%f",newLocation.coordinate.longitude];
+    self.latitudeLabel.text = [NSString stringWithFormat:@"%f",newLocation.coordinate.latitude];
 }
 
 - (void)locationManager:(CLLocationManager *)manager
