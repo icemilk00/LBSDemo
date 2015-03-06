@@ -7,7 +7,6 @@
 //
 
 #import "ViewController.h"
-#import <CoreLocation/CoreLocation.h>
 
 @interface ViewController ()
 
@@ -24,28 +23,44 @@
     self.locationManager.distanceFilter = 200;
     _locationManager.desiredAccuracy = kCLLocationAccuracyBest;
     
+#if __IPHONE_OS_VERSION_MAX_ALLOWED >=__IPHONE_8_0
     [self.locationManager requestAlwaysAuthorization];
     [self.locationManager requestWhenInUseAuthorization];
-    
+#endif
+
 }
 
-- (void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation
-           fromLocation:(CLLocation *)oldLocation {
+
+#pragma mark -- CLLocationManagerDelegate --
+- (void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation {
+    
+    NSLog(@"didUpdateToLocation and newlocation = %f,%f",newLocation.coordinate.latitude,newLocation.coordinate.longitude);
+    
     self.checkinLocation = newLocation;
-    //do something else
-    NSLog(@"didUpdateToLocation %f,%f",newLocation.coordinate.latitude,newLocation.coordinate.longitude);
+
+    //116.410193  40.035770
     self.longitudeLabel.text = [NSString stringWithFormat:@"%f",newLocation.coordinate.longitude];
     self.latitudeLabel.text = [NSString stringWithFormat:@"%f",newLocation.coordinate.latitude];
+    
+    LBSSearchController *searchController = [[LBSSearchController alloc] init];
+    searchController.lbsDelegate = self;
+    searchController.currentLocation = newLocation;
+    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:searchController];
+    [self presentViewController:nav animated:YES completion:nil];
 }
 
-- (void)locationManager:(CLLocationManager *)manager
-       didFailWithError:(NSError *)error
+-(void)changeLocation:(NSString *)locationStr
+{
+    [self.locationButton setTitle:locationStr forState:UIControlStateNormal];
+}
+
+- (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error
 {
     NSLog(@"didFailWithError");
 }
 
-
-- (IBAction) setupLocationManager {
+#pragma mark -- 获取位置按钮 Action --
+- (IBAction)setupLocationManager {
     
     if ([CLLocationManager locationServicesEnabled]) {
         NSLog( @"Starting CLLocationManager" );
@@ -53,10 +68,6 @@
         
     } else {
         NSLog( @"Cannot Starting CLLocationManager" );
-        /*self.locationManager.delegate = self;
-         self.locationManager.distanceFilter = 200;
-         locationManager.desiredAccuracy = kCLLocationAccuracyBest;
-         [self.locationManager startUpdatingLocation];*/
     }
 }
 
@@ -66,3 +77,4 @@
 }
 
 @end
+

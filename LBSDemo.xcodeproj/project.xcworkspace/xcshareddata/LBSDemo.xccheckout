@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>A2C8D070-4008-46D5-A041-0FEE9F881798</string>
+	<key>IDESourceControlProjectName</key>
+	<string>LBSDemo</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>B3B649A4B555D73EC90989B484DEF5DFB68B4269</key>
+		<string>https://github.com/icemilk00/LBSDemo.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>LBSDemo.xcodeproj</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>B3B649A4B555D73EC90989B484DEF5DFB68B4269</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/icemilk00/LBSDemo.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>B3B649A4B555D73EC90989B484DEF5DFB68B4269</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>B3B649A4B555D73EC90989B484DEF5DFB68B4269</string>
+			<key>IDESourceControlWCCName</key>
+			<string>LBSDemo</string>
+		</dict>
+	</array>
+</dict>
+</plist>
