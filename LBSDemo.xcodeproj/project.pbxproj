@@ -34,6 +34,11 @@
 		E68490901AA9911E0047E67B /* JSONKit.m in Sources */ = {isa = PBXBuildFile; fileRef = E684908F1AA9911E0047E67B /* JSONKit.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		E68490961AA99E050047E67B /* LBSSearchTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E68490941AA99E050047E67B /* LBSSearchTableViewCell.m */; };
 		E68490971AA99E050047E67B /* LBSSearchTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E68490951AA99E050047E67B /* LBSSearchTableViewCell.xib */; };
+		E6926D251AAAA8F6005C7159 /* SearchLastTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E6926D231AAAA8F6005C7159 /* SearchLastTableViewCell.m */; };
+		E6926D261AAAA8F6005C7159 /* SearchLastTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E6926D241AAAA8F6005C7159 /* SearchLastTableViewCell.xib */; };
+		E6D5907A1AAB39E3008ED67A /* MakeLocationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E6D590781AAB39E3008ED67A /* MakeLocationViewController.m */; };
+		E6D5907F1AAB3B86008ED67A /* MakeLocationTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E6D5907D1AAB3B86008ED67A /* MakeLocationTableViewCell.m */; };
+		E6D590801AAB3B86008ED67A /* MakeLocationTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E6D5907E1AAB3B86008ED67A /* MakeLocationTableViewCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -96,6 +101,14 @@
 		E68490931AA99E050047E67B /* LBSSearchTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBSSearchTableViewCell.h; sourceTree = "<group>"; };
 		E68490941AA99E050047E67B /* LBSSearchTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBSSearchTableViewCell.m; sourceTree = "<group>"; };
 		E68490951AA99E050047E67B /* LBSSearchTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LBSSearchTableViewCell.xib; sourceTree = "<group>"; };
+		E6926D221AAAA8F6005C7159 /* SearchLastTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchLastTableViewCell.h; sourceTree = "<group>"; };
+		E6926D231AAAA8F6005C7159 /* SearchLastTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchLastTableViewCell.m; sourceTree = "<group>"; };
+		E6926D241AAAA8F6005C7159 /* SearchLastTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchLastTableViewCell.xib; sourceTree = "<group>"; };
+		E6D590771AAB39E3008ED67A /* MakeLocationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MakeLocationViewController.h; sourceTree = "<group>"; };
+		E6D590781AAB39E3008ED67A /* MakeLocationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MakeLocationViewController.m; sourceTree = "<group>"; };
+		E6D5907C1AAB3B86008ED67A /* MakeLocationTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MakeLocationTableViewCell.h; sourceTree = "<group>"; };
+		E6D5907D1AAB3B86008ED67A /* MakeLocationTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MakeLocationTableViewCell.m; sourceTree = "<group>"; };
+		E6D5907E1AAB3B86008ED67A /* MakeLocationTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MakeLocationTableViewCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -162,6 +175,14 @@
 				E68490931AA99E050047E67B /* LBSSearchTableViewCell.h */,
 				E68490941AA99E050047E67B /* LBSSearchTableViewCell.m */,
 				E68490951AA99E050047E67B /* LBSSearchTableViewCell.xib */,
+				E6926D221AAAA8F6005C7159 /* SearchLastTableViewCell.h */,
+				E6926D231AAAA8F6005C7159 /* SearchLastTableViewCell.m */,
+				E6926D241AAAA8F6005C7159 /* SearchLastTableViewCell.xib */,
+				E6D590771AAB39E3008ED67A /* MakeLocationViewController.h */,
+				E6D590781AAB39E3008ED67A /* MakeLocationViewController.m */,
+				E6D5907C1AAB3B86008ED67A /* MakeLocationTableViewCell.h */,
+				E6D5907D1AAB3B86008ED67A /* MakeLocationTableViewCell.m */,
+				E6D5907E1AAB3B86008ED67A /* MakeLocationTableViewCell.xib */,
 				E64A39E41AA83C4500FD3777 /* Main.storyboard */,
 				E64A39E71AA83C4500FD3777 /* Images.xcassets */,
 				E64A39E91AA83C4500FD3777 /* LaunchScreen.xib */,
@@ -322,7 +343,9 @@
 			files = (
 				E64A39E61AA83C4500FD3777 /* Main.storyboard in Resources */,
 				E68490971AA99E050047E67B /* LBSSearchTableViewCell.xib in Resources */,
+				E6926D261AAAA8F6005C7159 /* SearchLastTableViewCell.xib in Resources */,
 				E64A39EB1AA83C4500FD3777 /* LaunchScreen.xib in Resources */,
+				E6D590801AAB3B86008ED67A /* MakeLocationTableViewCell.xib in Resources */,
 				E64A39E81AA83C4500FD3777 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -342,6 +365,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E68490441AA943420047E67B /* ASIDataCompressor.m in Sources */,
+				E6926D251AAAA8F6005C7159 /* SearchLastTableViewCell.m in Sources */,
 				E64A39E31AA83C4500FD3777 /* ViewController.m in Sources */,
 				E68490481AA943420047E67B /* ASIHTTPRequest.m in Sources */,
 				E68490431AA943420047E67B /* ASIAuthenticationDialog.m in Sources */,
@@ -356,6 +380,8 @@
 				E68490901AA9911E0047E67B /* JSONKit.m in Sources */,
 				E684908C1AA982FF0047E67B /* LBSSearchController.m in Sources */,
 				E68490961AA99E050047E67B /* LBSSearchTableViewCell.m in Sources */,
+				E6D5907F1AAB3B86008ED67A /* MakeLocationTableViewCell.m in Sources */,
+				E6D5907A1AAB39E3008ED67A /* MakeLocationViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
