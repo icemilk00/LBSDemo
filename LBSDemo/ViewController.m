@@ -49,10 +49,6 @@
     [self presentViewController:nav animated:YES completion:nil];
 }
 
--(void)changeLocation:(NSString *)locationStr
-{
-    [self.locationButton setTitle:locationStr forState:UIControlStateNormal];
-}
 
 - (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error
 {
@@ -60,9 +56,15 @@
     //如果用模拟器会走到这里，为了方便测试，这里经纬度写死以供程序继续跑下去
     LBSSearchController *searchController = [[LBSSearchController alloc] init];
     searchController.lbsDelegate = self;
-    searchController.currentLocation = [[CLLocation alloc] initWithLatitude:16.035698 longitude:45.410196];
+    searchController.currentLocation = [[CLLocation alloc] initWithLatitude:40.035770 longitude:116.410193];
     UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:searchController];
     [self presentViewController:nav animated:YES completion:nil];
+}
+
+#pragma mark -- LBSSearchDelegate --
+-(void)changeLocation:(NSString *)locationStr
+{
+    [self.locationButton setTitle:locationStr forState:UIControlStateNormal];
 }
 
 #pragma mark -- 获取位置按钮 Action --

@@ -49,9 +49,9 @@
     // Include the search controller's search bar within the table's header view.
     self.tableView.tableHeaderView = self.searchController.searchBar;
     self.searchController.searchBar.delegate = self;
-    
     self.definesPresentationContext = YES;
     
+    //nav左按钮
     UIBarButtonItem *leftBtn = [[UIBarButtonItem alloc]
                                  initWithTitle:@"离开"
                                  style:UIBarButtonItemStylePlain
@@ -61,49 +61,24 @@
     
 }
 
--(void)backAction
-{
-    [self.navigationController dismissViewControllerAnimated:YES completion:nil];
-}
-
 -(void)dataInit
 {
     self.datasourceArray = [[NSMutableArray alloc] initWithObjects:@"不提示位置", nil];
     self.searchDataArray = [[NSMutableArray alloc] initWithObjects:@"不提示位置", nil];
 }
 
+-(void)backAction
+{
+    [self.navigationController dismissViewControllerAnimated:YES completion:nil];
+}
+
+#pragma mark -- UISearchResultsUpdating --
 -(void)updateSearchResultsForSearchController:(UISearchController *)searchController
 {
     
 }
-
--(void)keywordRequestFinished:(ASIHTTPRequest *)request
-{
-
-    [_searchDataArray removeObjectsInRange:NSMakeRange(1, _searchDataArray.count - 1)];
-    NSLog(@"_searchDataArray = %@", _searchDataArray);
-    
-    NSString *resultStr = [request responseString];
-    NSDictionary *dic = [resultStr objectFromJSONString];
-    NSLog(@"dic = %@", dic);
-    
-    if ([[dic objectForKey:@"status"] isEqualToString:@"OK"] && [[dic objectForKey:@"count"] integerValue] > 0) {
-        
-        [self makeDatasource:dic toArray:_datasourceArray];
-    }
-    
-    [_searchDataArray addObject:@"找不到位置"];
-    
-    [_searchResultTableView reloadData];
-    
-    
-}
-
--(void)keywordRequestFailed:(ASIHTTPRequest *)request
-{
-    
-}
-
+ 
+#pragma mark -- 根据关键字搜索位置请求 --
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
 {
     NSLog(@"searchBarSearchButtonClicked");
@@ -120,7 +95,7 @@
     ASIHTTPRequest *request = [[ASIHTTPRequest alloc] initWithURL:[NSURL URLWithString:urlString]];
     
     
-//    ASIHTTPRequest *request = [[ASIHTTPRequest alloc] initWithURL:[NSURL URLWithString:[[NSString stringWithFormat:GET_LBS_BY_KEYWORD_URL_STRING, 40.035698, 116.410196] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]]];
+    //    ASIHTTPRequest *request = [[ASIHTTPRequest alloc] initWithURL:[NSURL URLWithString:[[NSString stringWithFormat:GET_LBS_BY_KEYWORD_URL_STRING, 40.035698, 116.410196] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]]];
     request.delegate = self;
     [request setDidFinishSelector:@selector(keywordRequestFinished:)];
     [request setDidFailSelector:@selector(keywordRequestFailed:)];
@@ -128,13 +103,41 @@
     
 }
 
+-(void)keywordRequestFinished:(ASIHTTPRequest *)request
+{
+
+    [_searchDataArray removeObjectsInRange:NSMakeRange(1, _searchDataArray.count - 1)];
+    NSLog(@"_searchDataArray = %@", _searchDataArray);
+    
+    NSString *resultStr = [request responseString];
+    NSDictionary *dic = [resultStr objectFromJSONString];
+    NSLog(@"dic = %@", dic);
+    
+    if ([[dic objectForKey:@"status"] isEqualToString:@"OK"] && [[dic objectForKey:@"count"] integerValue] > 0) {
+        
+        [self makeDatasource:dic toArray:_searchDataArray];
+    }
+    
+    [_searchDataArray addObject:@"找不到位置"];
+    
+    [_searchResultTableView reloadData];
+    
+    
+}
+
+-(void)keywordRequestFailed:(ASIHTTPRequest *)request
+{
+    
+}
+
+#pragma mark -- UISearchBarDelegate --
 - (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar
 {
     _isSearch = NO;
     [_searchResultTableView removeFromSuperview];
 }
 
-#pragma mark - Table view data source
+#pragma mark -- TableView dataSource && delegate --
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     // Return the number of sections.
@@ -149,6 +152,21 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell;
     
+    if (_isSearch == YES && indexPath.row == [_searchDataArray count] - 1) {
+        cell = [tableView dequeueReusableCellWithIdentifier:@"LastCell"];
+        
+        if(cell == nil)
+        {
+            cell = [[[NSBundle mainBundle] loadNibNamed:@"SearchLastTableViewCell" owner:self options:nil] lastObject];
+        }
+        
+        ((SearchLastTableViewCell *)cell).noteLabel.text = @"没有找到你的位置？";
+        ((SearchLastTableViewCell *)cell).makeLabel.text = [NSString stringWithFormat:@"创建新的位置：%@", self.searchController.searchBar.text];
+        
+        return cell;
+        
+    }
+    
     if (indexPath.row <= 1) {
         
         cell = [tableView dequeueReusableCellWithIdentifier:@"defautlCell"];
@@ -162,21 +180,6 @@
     }
     else
     {
-        if (_isSearch == YES && indexPath.row == [_searchDataArray count] - 1) {
-            cell = [tableView dequeueReusableCellWithIdentifier:@"LastCell"];
-            
-            if(cell == nil)
-            {
-                cell = [[[NSBundle mainBundle] loadNibNamed:@"SearchLastTableViewCell" owner:self options:nil] lastObject];
-            }
-            
-            ((SearchLastTableViewCell *)cell).noteLabel.text = @"没有找到你的位置？";
-            ((SearchLastTableViewCell *)cell).makeLabel.text = [NSString stringWithFormat:@"创建新的位置：%@", self.searchController.searchBar.text];
-            
-            return cell;
-
-        }
-        
         cell = [tableView dequeueReusableCellWithIdentifier:@"LBSCell"];
         
         if(cell == nil)
@@ -234,6 +237,7 @@
     [self.navigationController dismissViewControllerAnimated:YES completion:nil];
 }
 
+#pragma mark -- MakeLocationDelegate --
 -(void)makeLocationFinished:(NSString *)locationStr
 {
     
@@ -244,7 +248,7 @@
     [self.navigationController dismissViewControllerAnimated:YES completion:nil];
 }
 
-
+#pragma mark -- 根据坐标获取周边位置 --
 -(void)getLBSNearLocation
 {
 //    self.lbsRequest = [[ASIHTTPRequest alloc] initWithURL:[NSURL URLWithString:[NSString stringWithFormat:GET_LBS_URL_STRING, _currentLocation.coordinate.latitude, _currentLocation.coordinate.longitude]]];
@@ -271,6 +275,11 @@
     }
     [self.tableView reloadData];
     
+}
+
+
+-(void)lbsRequestFailed:(ASIHTTPRequest *)request
+{
     
 }
 
@@ -297,15 +306,10 @@
     
     NSLog(@"tempDataArray = %@", tempDataArray);
     [toArray addObjectsFromArray:tempDataArray];
-
-}
-
--(void)lbsRequestFailed:(ASIHTTPRequest *)request
-{
     
 }
 
-#pragma mark -- 计算签名的方法 --
+#pragma mark -- 计算请求签名的方法 --
 + (NSString *)serializeURL:(NSString *)baseURL params:(NSDictionary *)params
 {
     NSURL* parsedURL = [NSURL URLWithString:[baseURL stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];

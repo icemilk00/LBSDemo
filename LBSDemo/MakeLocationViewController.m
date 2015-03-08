@@ -51,7 +51,7 @@
     _placeHolderArray = [[NSArray alloc] initWithObjects:@"位置名称", @"选择地区", @"街道门牌地址", @"选填", @"商家联系电话，选填", nil];
 }
 
-
+#pragma mark -- tableView datasoruce && delegate --
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     // Return the number of sections.
     return 1;
