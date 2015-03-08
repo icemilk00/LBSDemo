@@ -90,10 +90,10 @@
     _searchResultTableView.dataSource = self;
     [self.searchController.view addSubview:_searchResultTableView];
     
-    NSString *baseUrlStr = @"http://api.dianping.com/v1/business/find_businesses?keyword=%@&latitude=%f&longitude=%f&sort=1&limit=20&offset_type=1&out_offset_type=1&platform=2";
+    NSString *baseUrlStr = @"http://api.dianping.com/v1/business/find_businesses?keyword=%@&latitude=%f&longitude=%f&sort=7&limit=20&offset_type=1&out_offset_type=1&platform=2&radius=5000";
     NSString* urlString = [[self class] serializeURL:[NSString stringWithFormat:baseUrlStr, self.searchController.searchBar.text, _currentLocation.coordinate.latitude, _currentLocation.coordinate.longitude] params:nil];
-    ASIHTTPRequest *request = [[ASIHTTPRequest alloc] initWithURL:[NSURL URLWithString:urlString]];
     
+    ASIHTTPRequest *request = [[ASIHTTPRequest alloc] initWithURL:[NSURL URLWithString:urlString]];
     
     //    ASIHTTPRequest *request = [[ASIHTTPRequest alloc] initWithURL:[NSURL URLWithString:[[NSString stringWithFormat:GET_LBS_BY_KEYWORD_URL_STRING, 40.035698, 116.410196] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]]];
     request.delegate = self;
